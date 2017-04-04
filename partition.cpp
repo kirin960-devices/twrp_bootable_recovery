@@ -1111,6 +1111,8 @@ void TWPartition::Setup_Data_Media() {
 		}
 	}
 	ExcludeAll(Mount_Point + "/media");
+	/** Since Huawei stores system related stuff on /data, exclude it from beeing wiped **/
+	wipe_exclusions.add_absolute_dir(Mount_Point + "/hw_init");
 }
 
 void TWPartition::Find_Real_Block_Device(string& Block, bool Display_Error) {
