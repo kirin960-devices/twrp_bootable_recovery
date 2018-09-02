@@ -60,7 +60,7 @@ LOCAL_SHARED_LIBRARIES := \
     liblog \
     libpng
 
-resource_files := $(call find-files-in-subdirs, bootable/recovery, \
+resource_files := $(call find-files-in-subdirs, $(commands_recovery_local_path), \
     "*_text.png", \
     res-mdpi/images \
     res-hdpi/images \
@@ -75,7 +75,7 @@ GEN := $(addprefix $(testimage_out_path)/, $(resource_files))
 
 $(GEN): PRIVATE_PATH := $(LOCAL_PATH)
 $(GEN): PRIVATE_CUSTOM_TOOL = cp $< $@
-$(GEN): $(testimage_out_path)/% : bootable/recovery/%
+$(GEN): $(testimage_out_path)/% : $(commands_recovery_local_path)/%
 	$(transform-generated-source)
 LOCAL_GENERATED_SOURCES += $(GEN)
 
@@ -200,7 +200,7 @@ include $(CLEAR_VARS)
 LOCAL_CFLAGS := -Wall -Werror
 LOCAL_MODULE := recovery_host_test
 LOCAL_MODULE_HOST_OS := linux
-LOCAL_C_INCLUDES := bootable/recovery
+LOCAL_C_INCLUDES := $(commands_recovery_local_path)
 LOCAL_SRC_FILES := \
     component/imgdiff_test.cpp
 LOCAL_STATIC_LIBRARIES := \
