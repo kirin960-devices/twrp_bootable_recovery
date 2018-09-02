@@ -70,6 +70,7 @@ ifneq ($(TARGET_RECOVERY_REBOOT_SRC),)
 endif
 
 LOCAL_MODULE := recovery
+LOCAL_CLANG_CFLAGS += -Wno-error=format
 
 #LOCAL_FORCE_STATIC_EXECUTABLE := true
 
